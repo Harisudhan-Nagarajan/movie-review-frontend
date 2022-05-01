@@ -6,6 +6,8 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 
 export function Login() {
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
   const formvalidationSchema = yup.object({
     email: yup.string().required("email is required"),
 
@@ -30,11 +32,15 @@ export function Login() {
             if (data.token) {
               localStorage.setItem("token", data.token);
               localStorage.setItem("email", data.email);
+              navigate("/");
+              setError("");
+              return;
             }
+            setError("Invalid email or password");
           });
       },
     });
-  const navigate = useNavigate();
+
   return (
     <div id="sginlog">
       <form id="login" onSubmit={handleSubmit}>
@@ -78,6 +84,7 @@ export function Login() {
           <b>Forgotten your Password?</b>
         </Button>
         <br /> <br />
+        <p style={{ color: "red" }}>{error}</p>
         <Button variant="contained" type="submit">
           Log in
         </Button>

@@ -1,9 +1,11 @@
 import { Button } from "@mui/material";
 import { TextField } from "@mui/material";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
 export function Signup() {
+  const navigate = useNavigate();
   const formvalidationSchema = yup.object({
     name: yup.string().required("email is required"),
     email: yup.string().required("email is required"),
@@ -24,7 +26,12 @@ export function Signup() {
           },
         })
           .then((res) => res.json())
-          .then((data) => console.log(data));
+          .then((data) => {
+            if (data.message === "User created") {
+              navigate("/login");
+              return;
+            }
+          });
       },
     });
   return (
