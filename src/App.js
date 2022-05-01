@@ -12,7 +12,7 @@ function App() {
   const navigate = useNavigate();
   const [movielists, Setmovie] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:9000/movies/movies")
+    fetch("https://hari-movie-review.herokuapp.com/movies/movies")
       .then((res) => res.json())
       .then((data) => Setmovie(data));
   }, []);

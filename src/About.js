@@ -38,7 +38,7 @@ export function About() {
   }, [movielists]);
   const deleterating = () => {
     handleClose();
-    fetch(`http://localhost:9000/movies/movies/${id}`, {
+    fetch(`https://hari-movie-review.herokuapp.com/movies/movies/${id}`, {
       method: "delete",
       headers: {
         "content-Type": "application/json",
@@ -54,7 +54,7 @@ export function About() {
   const postrating = () => {
     handleClose();
     if (localStorage.getItem("token") && localStorage.getItem("email")) {
-      fetch(`http://localhost:9000/movies/rating/${id}`, {
+      fetch(`https://hari-movie-review.herokuapp.com/movies/rating/${id}`, {
         method: "POST",
         body: JSON.stringify({ rating: rating }),
         headers: {
@@ -73,7 +73,7 @@ export function About() {
     }
   };
   const getrating = () => {
-    fetch(`http://localhost:9000/movies/movies/${id}`, {
+    fetch(`https://hari-movie-review.herokuapp.com/movies/movies/${id}`, {
       method: "POST",
       headers: {
         "content-Type": "application/json",

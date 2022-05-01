@@ -18,7 +18,7 @@ export function Login() {
       validationSchema: formvalidationSchema,
       onSubmit: async (values) => {
         console.log(values);
-        fetch("http://localhost:9000/signup_login/login", {
+        fetch("https://hari-movie-review.herokuapp.com/signup_login/login", {
           method: "POST",
           body: JSON.stringify(values),
           headers: {
