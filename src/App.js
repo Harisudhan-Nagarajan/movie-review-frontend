@@ -32,8 +32,8 @@ function App() {
   return (
     <div className="App">
       <moviescontext.Provider value={[movielists, Setmovie]}>
-        <Box sx={{ flexGrow: 1, marginBottom: "5rem" }}>
-          <AppBar position="fixed">
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="fixed" sx={{ backgroundColor: "black" }}>
             <Toolbar>
               <Button
                 color="inherit"
@@ -60,12 +60,14 @@ function App() {
             </Toolbar>
           </AppBar>
         </Box>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about/:id" element={<About />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
+        <div id="routes">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about/:id" element={<About />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </div>
       </moviescontext.Provider>
     </div>
   );
