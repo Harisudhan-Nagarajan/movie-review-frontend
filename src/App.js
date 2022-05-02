@@ -1,5 +1,17 @@
+import * as React from "react";
 import "./App.css";
-import { AppBar, Badge, Box, Button, IconButton, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Badge,
+  Box,
+  Button,
+  IconButton,
+  Toolbar,
+  Typography,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { Home } from "./Home";
 import { useState, useEffect, useContext, createContext } from "react";
@@ -16,6 +28,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => Setmovie(data));
   }, []);
+
   return (
     <div className="App">
       <moviescontext.Provider value={[movielists, Setmovie]}>
@@ -29,9 +42,21 @@ function App() {
               >
                 Home
               </Button>
-              <Button color="inherit" onClick={() => navigate("/login")}>
-                Log in
-              </Button>
+              {localStorage.getItem("token") ? (
+                <Button
+                  color="inherit"
+                  onClick={() => {
+                    localStorage.clear();
+                    navigate("/login");
+                  }}
+                >
+                  Log out
+                </Button>
+              ) : (
+                <Button color="inherit" onClick={() => navigate("/login")}>
+                  Log in
+                </Button>
+              )}
             </Toolbar>
           </AppBar>
         </Box>
