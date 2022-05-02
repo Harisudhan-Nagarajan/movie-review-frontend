@@ -8,8 +8,20 @@ export function Signup() {
   const navigate = useNavigate();
   const formvalidationSchema = yup.object({
     name: yup.string().required("email is required"),
-    email: yup.string().required("email is required"),
-    password: yup.string().required("Password is required"),
+    email: yup
+      .string()
+      .min(4, "Email must be at least 4 characters")
+      .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Email is not valid")
+      .required("Email is required"),
+    password: yup
+      .string()
+      .min(8, "Password is too Small")
+      .max(14, "Password is to Big")
+      .matches(
+        /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!%&])/g,
+        "Pattern is not matched"
+      )
+      .required("Password is required"),
   });
 
   const { handleChange, handleSubmit, handleBlur, errors, values, touched } =

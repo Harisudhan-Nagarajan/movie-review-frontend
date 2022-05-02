@@ -47,3 +47,9 @@
   border: 1px solid black;
   padding: 5px;
 }
+
+#routes{
+  background-color: rgb(192, 191, 189);
+  padding-top: 5rem;
+  min-height: 89.2vh;
+}
